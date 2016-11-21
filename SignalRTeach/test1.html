@@ -12,7 +12,9 @@
     <script type="text/javascript">
      
         var connection = $.connection("/realtime/echo");
-
+        connection.error(function (err) {
+            alert(err);
+        });
         $(function () {
         
             connection.start()
