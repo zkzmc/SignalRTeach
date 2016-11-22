@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.SignalR;
 using Microsoft.Owin.Cors;
 using Owin;
+using System;
 
 namespace SignalRTeach
 {
@@ -8,18 +9,7 @@ namespace SignalRTeach
     {
         public void Configuration(IAppBuilder app)
         {
-            //var config = new ConnectionConfiguration() {
-            //    EnableJSONP = true
-            //};
-            //app.MapSignalR<EchoConnection>(path: "/realtime/echo",configuration:config);
-            app.Map(pathMatch: "/realtime/echo",
-                configuration:
-                map =>
-                {
-                    map.UseCors(CorsOptions.AllowAll);
-                    map.RunSignalR<EchoConnection>();
-                }
-                );
+            app.MapSignalR<TrackerConnection>("/tracker");
         }
     }
 }
